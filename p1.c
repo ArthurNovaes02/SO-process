@@ -23,50 +23,11 @@
 
 int main()
 {
-	// const int SIZE = 1073741824;
 	const int SIZE = 4096;
 	const char *name = "shared_memory";
-	const char *name2 = "shared_memory2";
-	const char *name3 = "shared_memory3";
 
-	int shm_fd, shm_fd2, shm_fd3;
+	int shm_fd;
 	char *ptr, *start;
-	char *ptr2, *start2;
-	char *ptr3, *start3;
-	char letra;
-	int size = 0;
-	char charSize;
-
-	// criando uma SM para salvar a letra que deve ser procurada
-	printf("Digite a letra que você quer: ");
-	scanf("%c", &letra);
-
-	shm_fd2 = shm_open(name2, O_CREAT | O_RDWR, 0666);
-
-	ftruncate(shm_fd2,SIZE);
-
-	ptr2 = mmap(0,SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd2, 0);
-	if (ptr2 == MAP_FAILED) {
-		printf("Map2 failed\n");
-		return -1;
-	}
-
-	start2 = ptr2;
-    *ptr2 = letra;
-    ptr2++;    	
-	*ptr2 = '\0';
-	ptr2++;
-
-	// Memória 3
-	shm_fd3 = shm_open(name3, O_CREAT | O_RDWR, 0666);
-
-	ftruncate(shm_fd3,SIZE);
-
-	ptr3 = mmap(0,SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd3, 0);
-	if (ptr3 == MAP_FAILED) {
-		printf("Map3 failed\n");
-		return -1;
-	}
 
 	/* Cria um segmento de memória compartilhado 
 	e retorna um descritor de arquivo. Este
@@ -110,21 +71,14 @@ int main()
 	/*Escreve na memória compartilhada.*/
 	start = ptr;
 	char c;
-	size = 0;
-	for (c = 'a'; c <= 'z'; size++, c++, ptr++)
+	for (c = 'a'; c <= 'z'; c++,ptr++)
         	*ptr = c;
+    for (c = 'a'; c <= 'z'; c++,ptr++)
+    	*ptr = c;
 	*ptr = '\0';
 	ptr++;
-	*ptr=size;
-	printf("%d\n", size);
+	*ptr='a';
 
-	start3 = ptr3;
-	charSize = (char)97;
-    *ptr3 = (char)97;
-    ptr3++;    	
-	*ptr3 = '\0';
-	ptr3++;
-	printf("%d\n", (int)charSize);
 	//memcpy(ptr,"conteudo",tamanho);
 	return 0;
 }
