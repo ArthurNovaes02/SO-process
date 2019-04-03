@@ -71,10 +71,16 @@ int main()
 	/*Escreve na memória compartilhada.*/
 	start = ptr;
 	char c;
-	for (c = 'a'; c <= 'z'; c++,ptr++)
-        	*ptr = c;
-    for (c = 'a'; c <= 'z'; c++,ptr++)
-    	*ptr = c;
+
+	// preenche com o afabeto 39 vezes, o que da 1014 caracteres
+	for (int aux = 0; aux < 39; aux++){
+		for (c = 'a'; c <= 'z'; c++,ptr++)
+	        	*ptr = c;
+    }
+    // para completar 1024 caracteres, completa com a letra a
+    for (int a = 0; a < 10; a++, ptr++)
+    	*ptr = 'a';
+
 	*ptr = '\0';
 	ptr++;
 	*ptr='a';
