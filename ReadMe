@@ -1,0 +1,20 @@
+Arthur de Morais Novaes
+Gustavo Ceconeli
+
+Para testar o projeto siga os seguintes passos:
+
+Execute os comandos abaixo para uma criar a memória compartilhada e escrever 1G de caracteres na mesma.
+$ gcc p1.c -o p1 -lrt
+$ ./p1
+
+Nesse projeto serão escritos na memória comparilhada o alfabeto 39 vezes, mais o caractere 'a', 10 vezes para que complete 1024 caracteres.
+O caractere que será procurado também será o caractere 'a', totalizando em 49 incidências.
+
+Execute os comandos abaixo para ler a memória compartilhada (sem múltiplos processos), para saber a quantidade de incidência do caractere 'a'. Para fim de teste.
+$ gcc p2.c -o p2 -lrt
+$ ./p2
+
+Execute os comandos abaixo para criar 8 processos, que contarão a quantidade de incidências do caractere 'a'.
+$ gcc fork-p2.c -o fork-p2 -lrt
+$ ./fork-p2
+
